@@ -1,6 +1,8 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-const resultSpan = document.getElementById("result");
+const exprSpan = document.getElementById("expr");
+const resultSpan = document.getElementById("result")
+
 
 function initCanvas() {
   // black background
@@ -10,14 +12,24 @@ function initCanvas() {
   // drawing style
   ctx.strokeStyle = "white";
   ctx.lineWidth = 16;
+  ctx.lineJoin = "round";
   ctx.lineCap = "round";
 }
 
 initCanvas();
 
 let drawing = false;
+let lastX = 0;
+let lastY = 0;
 
-canvas.addEventListener("mousedown", () => drawing = true);
+
+canvas.addEventListener("mousedown", (e) => {
+  drawing = true;
+
+  const rect = canvas.getBoundingClientRect();
+  lastX = e.clientX - rect.left;
+  lastY = e.clientY - rect.top;
+});
 canvas.addEventListener("mouseup", () => drawing = false);
 canvas.addEventListener("mouseleave", () => drawing = false);
 
@@ -29,14 +41,18 @@ canvas.addEventListener("mousemove", (e) => {
   const y = e.clientY - rect.top;
 
   ctx.beginPath();
-  ctx.moveTo(x, y);
+  ctx.moveTo(lastX, lastY);
   ctx.lineTo(x, y);
   ctx.stroke();
+
+  lastX = x;
+  lastY = y;
 });
+
 
 document.getElementById("clearBtn").addEventListener("click", () => {
   initCanvas();
-  resultSpan.textContent = "—";
+  exprSpan.textContent = "—";
 });
 
 document.getElementById("predictBtn").addEventListener("click", async () => {
@@ -50,20 +66,13 @@ document.getElementById("predictBtn").addEventListener("click", async () => {
 
   const data = await res.json();
   if (data.error) {
-    resultSpan.textContent = "Error";
+    exprSpan.textContent = "Error";
     console.error(data.error);
-  } else {
-    switch (data.prediction){
-        case 10:
-            resultSpan.textContent = "+"; break;
-        case 11:
-            resultSpan.textContent = "-"; break;
-        case 12:
-            resultSpan.textContent = "*"; break;
-        case 13:
-            resultSpan.textContent = "/"; break;
-        default :
-            resultSpan.textContent = data.prediction; break;
-    }
+    return;
   }
+
+  // show the detected expression
+  // data.expr could be "2+3"
+  exprSpan.textContent = data.expr || "—";
+  resultSpan.textContent = data.result || "_";
 });

@@ -7,16 +7,16 @@
 </head>
 <body>
   <div class="container">
-    <h1>Draw a digit (0–9) or an operator</h1>
+    <h1>Draw a Math expression</h1>
 
-    <canvas id="canvas" width="280" height="280"></canvas>
+    <canvas id="canvas" width="1000" height="280"></canvas>
 
     <div class="buttons">
-      <button id="predictBtn">Predict</button>
+      <button id="predictBtn">Evaluate</button>
       <button id="clearBtn">Clear</button>
     </div>
-
-    <p class="result">Prediction: <span id="result">—</span></p>
+    <p class="expr">Expression: <span id="expr">—</span></p>
+    <p class="result">Result: <span id="result">—</span></p>
   </div>
 
   <script src="/static/script.js"></script>

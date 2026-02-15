@@ -1,0 +1,6 @@
+body { font-family: sans-serif; background: #111; color: #eee; }
+.container { width: 360px; margin: 40px auto; text-align: center; }
+canvas { border: 2px solid #444; border-radius: 8px; cursor: crosshair; }
+.buttons { margin: 12px 0; display: flex; gap: 10px; justify-content: center; }
+button { padding: 10px 14px; border-radius: 8px; border: 0; cursor: pointer; }
+.result { font-size: 20px; }

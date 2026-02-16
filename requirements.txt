@@ -1,8 +1,9 @@
+--index-url https://pypi.org/simple
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 Flask==3.1.2
-gunicorn==21.2.0
-numpy==2.3.5
-Pillow==11.1.0
-opencv-python-headless==4.13.0.92
---index-url https://download.pytorch.org/whl/cpu
-torch==2.10.0+cpu
-torchvision==0.25.0+cpu
+gunicorn
+torch
+torchvision
+numpy
+Pillow

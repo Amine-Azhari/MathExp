@@ -31,6 +31,7 @@ def index():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    print("PREDICT HIT")
     data = request.get_json()
     if not data or "image" not in data:
         return jsonify({"error": "Missing image"}), 400

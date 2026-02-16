@@ -11,7 +11,7 @@ from calculator import evaluate
 app = Flask(__name__)
 
 # Load model ONCE at startup
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 model = CNN().to(device)
 model.load_state_dict(torch.load("digits_ops_CNN.pth", map_location=device))
 model.eval()

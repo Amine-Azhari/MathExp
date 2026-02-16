@@ -29,7 +29,7 @@ class RemapLabelsDataset(Dataset):
 
 
 def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
 
 
     # MNIST transfrom (already 28*28 and white on black)

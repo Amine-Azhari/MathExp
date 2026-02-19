@@ -6,7 +6,9 @@ You can try it using this link : https://mathexp.onrender.com/
 
 
 Curious to know how it works? Read below.
-========== WORKFLOW ==========
+
+=============================== WORKFLOW ======================================
+
 • First, I trained a CNN (Convolutional Neural Network) model on digits (0–9) and basic operators (+, −, ×, /). For digits, I used the MNIST dataset, and for operators, I used a free dataset I found on Kaggle.
 • Then, I built a small web app using Flask, HTML, CSS, and JavaScript. It allows users to draw a digit or an operator, and the app predicts what it is.
 • After that, I needed to detect a sequence of elements (digits/operators), not just a single one. So I captured the canvas image, preprocessed it (blur, resize, etc. for better results), and applied OpenCV’s ‘connectedComponentsWithStats’ function to detect and isolate each connected component (each digit/operator) in the image.
